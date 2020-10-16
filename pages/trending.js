@@ -5,21 +5,34 @@ import utilStyles from "../styles/utils.module.css";
 import fetch from "node-fetch";
 import axios from "axios";
 import { GetStaticProps } from "next";
-// import Layout from "../../components/layout";
-// import { getTrendingNews } from "../lib/posts";
+import Col from "react-bootstrap/Button";
+import Row from "react-bootstrap/Button";
 
 function Trending({ trendingnews }) {
   return (
     <section>
-      <h1>Trending</h1>
-      <h3>Updates?</h3>
-      <ul>
-        {trendingnews.map((trending) => (
-          <li key={trending.url}>
-            <b key={trending.url}>QW {trending.title}</b>
-          </li>
-        ))}
-      </ul>
+      <h1 className="text-center">Trending News</h1>
+      <div className="row justify-content-center">
+        <ul className="">
+          {trendingnews.articles.map((trending) => (
+            <li className="row m-3 bg-light p-3 rounded">
+              {/* <b key={trending.url}>{trending.source.name}</b> */}
+              <div className="col-3">
+                <img className={utilStyles.img} src={trending.urlToImage}></img>
+              </div>
+              <Link href={trending.url}>
+                <div className="col-9">
+                  <b className="text-center" key={trending.url}>
+                    {trending.title}
+                  </b>
+                  {/* <b>{trending.source.name}</b> */}
+                  <p>{trending.description}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
@@ -27,22 +40,11 @@ function Trending({ trendingnews }) {
 //NOTE is there a better way to do this?
 
 export async function getStaticProps() {
-  const trendingnews = await axios
-    .get(
-      "https://newsapi.org/v2/top-headlines?country=us&apiKey=22221f62f9584a0d8654a29cadc834a8",
-      { transformResponse: [] }
-    )
-    .then((response) => {});
-  // .then((response) => response.json())
-  // console.log(res);
-
-  // let jres = await res.json();
-
-  // console.log(jres);
-
-  // const trendingnews = res;
-
-  // const trendingnews = [JSON.stringify(res)];
+  debugger;
+  const res = await fetch(
+    "https://newsapi.org/v2/top-headlines?country=us&apiKey=22221f62f9584a0d8654a29cadc834a8"
+  );
+  const trendingnews = await res.json();
   console.log(trendingnews);
 
   return {
