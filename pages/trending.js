@@ -1,50 +1,55 @@
 import Head from "next/head";
 import Link from "next/link";
+import { render } from "react-dom";
 import utilStyles from "../styles/utils.module.css";
+import fetch from "node-fetch";
+import axios from "axios";
+import { GetStaticProps } from "next";
 // import Layout from "../../components/layout";
 // import { getTrendingNews } from "../lib/posts";
 
-export default function Trending({ trending }) {
+function Trending({ trendingnews }) {
   return (
     <section>
-      <h1>Trending</h1>;
+      <h1>Trending</h1>
+      <h3>Updates?</h3>
+      <ul>
+        {trendingnews.map((trending) => (
+          <li key={trending.url}>
+            <b key={trending.url}>QW {trending.title}</b>
+          </li>
+        ))}
+      </ul>
     </section>
   );
-  // <ul className={utilStyles.list}>
-  //   {trending.map(({ id, date, title }) => (
-  //     <li className={utilStyles.listItem} key={id}>
-  //       {title}
-  //       <br />
-  //       {id}
-  //       <br />
-  //       {date}
-  //     </li>
-  //   ))}
-  // </ul>;
 }
 
 //NOTE is there a better way to do this?
 
-// export async function getStaticProps() {
-//   const res = await fetch("https://news67.p.rapidapi.com/trending?limit=20", {
-//     method: "GET",
-//     headers: {
-//       "x-rapidapi-host": "news67.p.rapidapi.com",
-//       "x-rapidapi-key": "80a35aed56msh4dbbb0b1e15af05p1dd2a9jsnd5e83e7094b3",
-//     },
-//   })
-//     .then((response) => {
-//       console.log(response);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
+export async function getStaticProps() {
+  const trendingnews = await axios
+    .get(
+      "https://newsapi.org/v2/top-headlines?country=us&apiKey=22221f62f9584a0d8654a29cadc834a8",
+      { transformResponse: [] }
+    )
+    .then((response) => {});
+  // .then((response) => response.json())
+  // console.log(res);
 
-//   const trending = await res.toJSON();
+  // let jres = await res.json();
 
-//   return {
-//     props: {
-//       trending,
-//     },
-//   };
-// }
+  // console.log(jres);
+
+  // const trendingnews = res;
+
+  // const trendingnews = [JSON.stringify(res)];
+  console.log(trendingnews);
+
+  return {
+    props: {
+      trendingnews,
+    },
+  };
+}
+
+export default Trending;
