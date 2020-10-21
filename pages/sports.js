@@ -8,6 +8,7 @@ import { GetStaticProps } from "next";
 import Col from "react-bootstrap/Button";
 import Row from "react-bootstrap/Button";
 import NavBarComp from "../components/nav";
+import Footer from "../components/footer";
 
 function Sports({ sportsnews }) {
   return (
@@ -37,6 +38,7 @@ function Sports({ sportsnews }) {
           </div>
         </div>
       </section>
+      <Footer></Footer>
     </div>
   );
 }

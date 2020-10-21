@@ -5,6 +5,7 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import Date from "../components/date";
 import NavBarComp from "../components/nav";
+import Footer from "../components/footer";
 import Navbar from "react-bootstrap/Navbar";
 
 export default function Home({ sportsnews, trendingnews, worldnews }) {
@@ -90,6 +91,8 @@ export default function Home({ sportsnews, trendingnews, worldnews }) {
           ))}
         </div>
       </div>
+
+      <Footer></Footer>
     </div>
   );
 }

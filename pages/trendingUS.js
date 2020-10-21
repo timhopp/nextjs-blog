@@ -8,6 +8,7 @@ import { GetStaticProps } from "next";
 import Col from "react-bootstrap/Button";
 import Row from "react-bootstrap/Button";
 import NavBarComp from "../components/nav";
+import Footer from "../components/footer";
 
 function Trending({ trendingnews }) {
   return (
@@ -40,6 +41,7 @@ function Trending({ trendingnews }) {
           </div>
         </div>
       </section>
+      <Footer></Footer>
     </div>
   );
 }
