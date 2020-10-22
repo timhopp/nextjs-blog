@@ -7,6 +7,7 @@ import Date from "../components/date";
 import NavBarComp from "../components/nav";
 import Footer from "../components/footer";
 import Navbar from "react-bootstrap/Navbar";
+import Article from "../components/articles";
 
 export default function Home({ sportsnews, trendingnews, worldnews }) {
   return (
@@ -29,21 +30,7 @@ export default function Home({ sportsnews, trendingnews, worldnews }) {
           </Link>
 
           {trendingnews.articles.map((trending) => (
-            <div className="col-3 m-2 bg-light p-3 rounded">
-              {/* <b key={trending.url}>{trending.source.name}</b> */}
-              <div className="">
-                <img className={utilStyles.img} src={trending.urlToImage}></img>
-              </div>
-              <Link href={trending.url}>
-                <div className="">
-                  <b className="text-center" key={trending.url}>
-                    {trending.title}
-                  </b>
-                  {/* <b>{trending.source.name}</b> */}
-                  <p>{trending.description}</p>
-                </div>
-              </Link>
-            </div>
+            <Article key={trending.title} art={trending}></Article>
           ))}
         </div>
         <div className="row justify-content-center">
@@ -52,21 +39,7 @@ export default function Home({ sportsnews, trendingnews, worldnews }) {
           </Link>
 
           {worldnews.articles.map((world) => (
-            <div className="col-3 m-2 bg-light p-3 rounded">
-              {/* <b key={world.url}>{world.source.name}</b> */}
-              <div className="">
-                <img className={utilStyles.img} src={world.urlToImage}></img>
-              </div>
-              <Link href={world.url}>
-                <div className="">
-                  <b className="text-center" key={world.url}>
-                    {world.title}
-                  </b>
-                  {/* <b>{world.source.name}</b> */}
-                  <p>{world.description}</p>
-                </div>
-              </Link>
-            </div>
+            <Article key={world.title} art={world}></Article>
           ))}
         </div>
         <div className="row justify-content-center">
@@ -74,20 +47,7 @@ export default function Home({ sportsnews, trendingnews, worldnews }) {
             <h3 className="text-left col-9">Sports</h3>
           </Link>
           {sportsnews.articles.map((sports) => (
-            <div className="col-3 m-2 bg-light p-2 rounded">
-              <div className="mb-2">
-                <img className={utilStyles.img} src={sports.urlToImage}></img>
-              </div>
-              <Link href={sports.url}>
-                <div className="">
-                  <b className="text-center" key={sports.url}>
-                    {sports.title}
-                  </b>
-                  {/* <b>{sports.source.name}</b> */}
-                  <p>{sports.description}</p>
-                </div>
-              </Link>
-            </div>
+            <Article key={sports.title} art={sports}></Article>
           ))}
         </div>
       </div>
@@ -97,6 +57,23 @@ export default function Home({ sportsnews, trendingnews, worldnews }) {
   );
 }
 
+// const ArticleTest = (props) => (
+//   <div className="col-3 m-2 bg-light p-2 rounded">
+//     <div className="mb-2">
+//       <img className={utilStyles.img} src={props.article.urlToImage}></img>
+//       <h4>rude</h4>
+//     </div>
+//     <Link href={props.article.url}>
+//       <div className="">
+//         <b className="text-center" key={props.article.url}>
+//           {props.article.title}
+//         </b>
+//         {/* <b>{props.article.source.name}</b> */}
+//         <p>{props.article.description}</p>
+//       </div>
+//     </Link>
+//   </div>
+// );
 export async function getStaticProps() {
   const res = await fetch(
     "https://newsapi.org/v2/top-headlines?country=us&pageSize=3&category=sports&apiKey=22221f62f9584a0d8654a29cadc834a8"
