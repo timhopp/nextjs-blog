@@ -25,65 +25,51 @@ export default function Home({
           Welcome to News-Fi, A sample news blog built with React and Next.js
         </b>
       </section>
-      <div className="container-fluid">
-        <div className="row justify-content-center">
-          <Link href="Sections/trendingUS">
-            <h3 className="text-left col-9">US News</h3>
-          </Link>
+      {/* Articles */}
+      <section>
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <Link href="Sections/trendingUS">
+              <h3 className="text-left col-9">US News</h3>
+            </Link>
 
-          {trendingnews.articles.map((trending) => (
-            <ArticleHome key={trending.title} art={trending}></ArticleHome>
-          ))}
-        </div>
-        <div className="row justify-content-center">
-          <Link href="Sections/trendingWorld">
-            <h3 className="text-left col-9">World News</h3>
-          </Link>
+            {trendingnews.articles.map((trending) => (
+              <ArticleHome key={trending.title} art={trending}></ArticleHome>
+            ))}
+          </div>
+          <div className="row justify-content-center">
+            <Link href="Sections/trendingWorld">
+              <h3 className="text-left col-9">World News</h3>
+            </Link>
 
-          {worldnews.articles.map((world) => (
-            <ArticleHome key={world.title} art={world}></ArticleHome>
-          ))}
+            {worldnews.articles.map((world) => (
+              <ArticleHome key={world.title} art={world}></ArticleHome>
+            ))}
+          </div>
+          <div className="row justify-content-center">
+            <Link href="Sections/sports">
+              <h3 className="text-left col-9">Sports</h3>
+            </Link>
+            {sportsnews.articles.map((sports) => (
+              <ArticleHome key={sports.title} art={sports}></ArticleHome>
+            ))}
+          </div>
+          <div className="row justify-content-center">
+            <Link href="Sections/tech">
+              <h3 className="text-left col-9">Tech</h3>
+            </Link>
+            {technews.articles.map((tech) => (
+              <ArticleHome key={tech.title} art={tech}></ArticleHome>
+            ))}
+          </div>
         </div>
-        <div className="row justify-content-center">
-          <Link href="Sections/sports">
-            <h3 className="text-left col-9">Sports</h3>
-          </Link>
-          {sportsnews.articles.map((sports) => (
-            <ArticleHome key={sports.title} art={sports}></ArticleHome>
-          ))}
-        </div>
-        <div className="row justify-content-center">
-          <Link href="Sections/tech">
-            <h3 className="text-left col-9">Tech</h3>
-          </Link>
-          {technews.articles.map((tech) => (
-            <ArticleHome key={tech.title} art={tech}></ArticleHome>
-          ))}
-        </div>
-      </div>
+      </section>
 
       <Footer></Footer>
     </div>
   );
 }
 
-// const ArticleTest = (props) => (
-//   <div className="col-3 m-2 bg-light p-2 rounded">
-//     <div className="mb-2">
-//       <img className={utilStyles.img} src={props.article.urlToImage}></img>
-//       <h4>rude</h4>
-//     </div>
-//     <Link href={props.article.url}>
-//       <div className="">
-//         <b className="text-center" key={props.article.url}>
-//           {props.article.title}
-//         </b>
-//         {/* <b>{props.article.source.name}</b> */}
-//         <p>{props.article.description}</p>
-//       </div>
-//     </Link>
-//   </div>
-// );
 export async function getStaticProps() {
   const res = await fetch(
     "https://newsapi.org/v2/top-headlines?country=us&pageSize=3&category=sports&apiKey=22221f62f9584a0d8654a29cadc834a8"

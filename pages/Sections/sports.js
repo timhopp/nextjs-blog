@@ -2,11 +2,13 @@ import fetch from "node-fetch";
 import NavBarComp from "../../components/nav";
 import Footer from "../../components/footer";
 import ArticleSec from "../../components/articlesSec";
+import Comments from "../../components/comments";
 
 function Sports({ sportsnews }) {
   return (
     <div>
       <NavBarComp></NavBarComp>
+      <Comments></Comments>
       <section>
         <h1 className="text-center">Sports News in the US</h1>
         <div className="">
@@ -17,6 +19,7 @@ function Sports({ sportsnews }) {
           </div>
         </div>
       </section>
+
       <Footer></Footer>
     </div>
   );
