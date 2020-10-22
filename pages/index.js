@@ -1,15 +1,17 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
 // @ts-ignore
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
-import Date from "../components/date";
 import NavBarComp from "../components/nav";
 import Footer from "../components/footer";
-import Navbar from "react-bootstrap/Navbar";
-import Article from "../components/articles";
+import ArticleHome from "../components/articlesHome";
 
-export default function Home({ sportsnews, trendingnews, worldnews }) {
+export default function Home({
+  sportsnews,
+  trendingnews,
+  worldnews,
+  technews,
+}) {
   return (
     <div>
       <div>
@@ -25,29 +27,37 @@ export default function Home({ sportsnews, trendingnews, worldnews }) {
       </section>
       <div className="container-fluid">
         <div className="row justify-content-center">
-          <Link href="trendingUS">
+          <Link href="Sections/trendingUS">
             <h3 className="text-left col-9">US News</h3>
           </Link>
 
           {trendingnews.articles.map((trending) => (
-            <Article key={trending.title} art={trending}></Article>
+            <ArticleHome key={trending.title} art={trending}></ArticleHome>
           ))}
         </div>
         <div className="row justify-content-center">
-          <Link href="trendingWorld">
+          <Link href="Sections/trendingWorld">
             <h3 className="text-left col-9">World News</h3>
           </Link>
 
           {worldnews.articles.map((world) => (
-            <Article key={world.title} art={world}></Article>
+            <ArticleHome key={world.title} art={world}></ArticleHome>
           ))}
         </div>
         <div className="row justify-content-center">
-          <Link href="/sports">
+          <Link href="Sections/sports">
             <h3 className="text-left col-9">Sports</h3>
           </Link>
           {sportsnews.articles.map((sports) => (
-            <Article key={sports.title} art={sports}></Article>
+            <ArticleHome key={sports.title} art={sports}></ArticleHome>
+          ))}
+        </div>
+        <div className="row justify-content-center">
+          <Link href="Sections/tech">
+            <h3 className="text-left col-9">Tech</h3>
+          </Link>
+          {technews.articles.map((tech) => (
+            <ArticleHome key={tech.title} art={tech}></ArticleHome>
           ))}
         </div>
       </div>
@@ -87,12 +97,17 @@ export async function getStaticProps() {
     "https://newsapi.org/v2/everything?q=world&pageSize=3&apiKey=22221f62f9584a0d8654a29cadc834a8"
   );
   const worldnews = await res3.json();
+  const res4 = await fetch(
+    "https://newsapi.org/v2/everything?q=tech&pageSize=3&apiKey=22221f62f9584a0d8654a29cadc834a8"
+  );
+  const technews = await res4.json();
 
   return {
     props: {
       sportsnews,
       trendingnews,
       worldnews,
+      technews,
     },
   };
 }

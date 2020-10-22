@@ -1,15 +1,16 @@
 import React from "react";
 import Link from "next/link";
-
-export default function Article({ art }) {
+// @ts-ignore
+import utilStyles from "../styles/utils.module.css";
+export default function ArticleSec({ art }) {
   return (
-    <div className="col-3 m-2 bg-light p-3 rounded">
+    <div className="row m-4 bg-light p-2 rounded">
       {/* <b key={sports.url}>{sports.source.name}</b> */}
-      <div className="">
-        <img src={art.urlToImage}></img>
+      <div className="col-3">
+        <img className={utilStyles.img} src={art.urlToImage}></img>
       </div>
       <Link href={art.url}>
-        <div className="">
+        <div className="col-9">
           <b className="text-center" key={art.url}>
             {art.title}
           </b>

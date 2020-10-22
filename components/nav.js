@@ -13,14 +13,17 @@ class NavBarComp extends React.Component {
               <Link href="/">
                 <a className="m-4">Home </a>
               </Link>
-              <Link href="/trendingUS">
+              <Link href="/Sections/trendingUS">
                 <a className="m-4">US Trending News</a>
               </Link>
-              <Link href="/trendingWorld">
+              <Link href="/Sections/trendingWorld">
                 <a className="m-4">World Trending News</a>
               </Link>
-              <Link href="/sports">
+              <Link href="/Sections/sports">
                 <a className="m-4">Sports</a>
+              </Link>
+              <Link href="/Sections/tech">
+                <a className="m-4">Tech</a>
               </Link>
             </div>
           </Nav>
